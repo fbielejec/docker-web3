@@ -5,11 +5,11 @@ services:
     image: parity/parity:stable
     container_name: qa_parity
     ports:
-      - "127.0.0.1:8545:8545"
+      - "8545:8545"
     volumes:
       - /tmp/parity-docker/testnet:/root/.local/share/io.parity.ethereum/
     networks:
-      - memefactory-net
+      - net
     command:
       --chain ropsten
       --base-path /root/.local/share/io.parity.ethereum/
@@ -25,8 +25,8 @@ services:
     depends_on:
       - parity
     networks:
-      - memefactory-net
+      - net
 
 networks:
-  memefactory-net:
-    driver: "bridge"      
+  net:
+    driver: "bridge"

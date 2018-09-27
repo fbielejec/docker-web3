@@ -1,9 +1,10 @@
 Web3 = require("web3");
 
-web3 = new Web3(new Web3.providers.HttpProvider("qa_parity:8545"));
+web3 = new Web3(new Web3.providers.HttpProvider(process.env.URL_PARITY));
 
 if(!web3.isConnected()) {
-  throw "Can't connect to Ethereum node";
+  var message = "Can't connect to Ethereum node: " + process.env.URL_PARITY;
+  throw message;
 }
 
 console.log(web3.eth.blockNumber);
