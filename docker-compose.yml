@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  parity:
+    image: parity/parity:stable
+    container_name: qa_parity
+    ports:
+      - "127.0.0.1:8545:8545"
+    volumes:
+      - /tmp/parity-docker/testnet:/root/.local/share/io.parity.ethereum/
+    networks:
+      - memefactory-net
+    command:
+      --chain ropsten
+      --base-path /root/.local/share/io.parity.ethereum/
+      --jsonrpc-apis 'web3,eth,net,parity,personal'
+      --jsonrpc-interface all
+      --jsonrpc-hosts all
+      --jsonrpc-cors '*'
+      --jsonrpc-port 8545
+
+  app:
+    build: .
+    container_name: qa_app
+    depends_on:
+      - parity
+    networks:
+      - memefactory-net
+
+networks:
+  memefactory-net:
+    driver: "bridge"      
