@@ -11,3 +11,11 @@ You need [Docker](https://www.docker.com/) and [docker-compose](https://docs.doc
 ```bash
 docker compose up
 ```
+
+## Web3 connectivity problem
+
+```bash
+docker run --net dockerweb3_net -it dockerweb3_app /bin/bash
+
+env URL_PARITY="http://qa_parity:8545" node app.js
+```

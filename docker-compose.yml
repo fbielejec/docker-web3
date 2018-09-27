@@ -5,7 +5,7 @@ services:
     image: parity/parity:stable
     container_name: qa_parity
     ports:
-      - "8545:8545"
+      - "0.0.0.0:8545:8545"
     volumes:
       - /tmp/parity-docker/testnet:/root/.local/share/io.parity.ethereum/
     networks:
